@@ -1,0 +1,36 @@
+.about__mission p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.about__what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.about__what-card {
+  background: var(--surface);
+  border-left: 3px solid var(--red);
+  padding: 14px 16px;
+}
+
+.about__what-card h3 {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.about__what-card p {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.about__membership p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
