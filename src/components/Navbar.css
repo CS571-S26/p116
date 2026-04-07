@@ -1,48 +1,44 @@
-.navbar {
-  background: var(--bg);
+.mims-navbar {
+  background: var(--bg) !important;
   border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 
-.navbar__inner {
+.mims-navbar__inner {
   max-width: 860px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
-.navbar__logo {
-  color: var(--text-primary);
+.mims-navbar__logo {
+  color: var(--text-primary) !important;
   font-weight: 800;
   font-size: 14px;
   letter-spacing: 3px;
   text-decoration: none;
 }
 
-.navbar__links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-}
-
-.navbar__links a {
-  color: var(--text-muted);
+/* Nav links */
+.mims-navbar .nav-link {
+  color: var(--text-muted) !important;
   font-size: 12px;
-  text-decoration: none;
   padding-bottom: 2px;
-  transition: color 0.15s;
 }
 
-.navbar__links a:hover {
-  color: var(--text-secondary);
+.mims-navbar .nav-link:hover {
+  color: var(--text-secondary) !important;
 }
 
-.navbar__links a.active {
-  color: var(--red);
+/* React Router sets .active on NavLink when route matches */
+.mims-navbar .nav-link.active {
+  color: var(--red) !important;
   border-bottom: 1px solid var(--red);
+}
+
+/* Bootstrap mobile toggle button */
+.mims-navbar .navbar-toggler {
+  border-color: var(--border);
+}
+
+.mims-navbar .navbar-toggler-icon {
+  filter: invert(1);
 }
