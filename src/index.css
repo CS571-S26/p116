@@ -10,6 +10,20 @@
   --text-muted: #555555;
 }
 
+/* ── Bootstrap Overrides ── */
+:root,
+[data-bs-theme="dark"] {
+  --bs-danger: #cc0000;
+  --bs-danger-rgb: 204, 0, 0;
+  --bs-primary: #cc0000;
+  --bs-primary-rgb: 204, 0, 0;
+  --bs-body-bg: #0d0d0d;
+  --bs-body-color: #ffffff;
+  --bs-card-bg: #1a1a1a;
+  --bs-card-border-color: #1f1f1f;
+  --bs-border-color: #1f1f1f;
+}
+
 /* ── Reset ── */
 *, *::before, *::after {
   box-sizing: border-box;
