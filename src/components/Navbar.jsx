@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { Navbar as BsNavbar, Nav, Container } from 'react-bootstrap'
 import './Navbar.css'
 
@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <BsNavbar className="mims-navbar" expand="md" sticky="top">
       <Container fluid className="mims-navbar__inner">
-        <BsNavbar.Brand as={NavLink} to="/" className="mims-navbar__logo">
+        <BsNavbar.Brand as={Link} to="/" className="mims-navbar__logo">
           MIMS
         </BsNavbar.Brand>
         <BsNavbar.Toggle aria-controls="main-nav" />
