@@ -1,4 +1,4 @@
-import { Badge } from 'react-bootstrap'
+import { Badge, Button, Card } from 'react-bootstrap'
 import { events } from '../data/events'
 import './Events.css'
 
@@ -11,18 +11,25 @@ export default function Events() {
       <hr className="divider" />
       <div className="events__list">
         {events.map((event, index) => (
-          <div key={event.id} className="event-item">
-            <div className="event-item__date">{event.date}</div>
-            <div className="event-item__body">
-              <div className="event-item__title">{event.title}</div>
-              <div className="event-item__meta">📍 {event.location} · {event.time}</div>
-              <div className="event-item__desc">{event.description}</div>
-            </div>
-            {/* Phase 1: first event shows RSVP'd state as a static visual mock */}
-            <button className={`rsvp-btn${index === 0 ? ' rsvp-btn--active' : ''}`}>
-              {index === 0 ? '✓ RSVP\'d' : 'RSVP'}
-            </button>
-          </div>
+          <Card key={event.id} className="event-card mb-3">
+            <Card.Body className="event-card__body">
+              <div className="event-card__date">{event.date}</div>
+              <div className="event-card__content">
+                <Card.Title className="event-card__title">{event.title}</Card.Title>
+                <Card.Subtitle className="event-card__meta mb-1">
+                  📍 {event.location} · {event.time}
+                </Card.Subtitle>
+                <Card.Text className="event-card__desc">{event.description}</Card.Text>
+              </div>
+              <Button
+                variant={index === 0 ? 'danger' : 'outline-danger'}
+                size="sm"
+                className="event-card__rsvp"
+              >
+                {index === 0 ? '✓ RSVP\'d' : 'RSVP'}
+              </Button>
+            </Card.Body>
+          </Card>
         ))}
       </div>
     </div>
