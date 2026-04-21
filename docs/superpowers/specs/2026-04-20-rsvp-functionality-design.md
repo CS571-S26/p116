@@ -44,7 +44,7 @@ App.jsx
   useState<number[]>(rsvpIds)   ← initialized from localStorage on mount
   useEffect → writes rsvpIds to localStorage on every change
 
-  addRSVP(id: number)    → setRsvpIds(prev => [...prev, id])
+  addRSVP(id: number)    → setRsvpIds(prev => prev.includes(id) ? prev : [...prev, id])
   removeRSVP(id: number) → setRsvpIds(prev => prev.filter(x => x !== id))
 
   <Navbar rsvpCount={rsvpIds.length} />
