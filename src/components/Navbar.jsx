@@ -2,7 +2,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { Navbar as BsNavbar, Nav, Container } from 'react-bootstrap'
 import './Navbar.css'
 
-export default function Navbar() {
+export default function Navbar({ rsvpCount = 0 }) {
   return (
     <BsNavbar className="mims-navbar" expand="md" sticky="top">
       <Container fluid className="mims-navbar__inner">
@@ -16,7 +16,12 @@ export default function Navbar() {
             <Nav.Link as={NavLink} to="/about">About</Nav.Link>
             <Nav.Link as={NavLink} to="/leadership">Leadership</Nav.Link>
             <Nav.Link as={NavLink} to="/events">Events</Nav.Link>
-            <Nav.Link as={NavLink} to="/my-events">My Events</Nav.Link>
+            <Nav.Link as={NavLink} to="/my-events">
+              My Events
+              {rsvpCount > 0 && (
+                <span className="navbar__badge">{rsvpCount}</span>
+              )}
+            </Nav.Link>
           </Nav>
         </BsNavbar.Collapse>
       </Container>
