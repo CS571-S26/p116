@@ -1,0 +1,12 @@
+.feedback-message {
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 4px 0 0 0;
+  min-height: 18px;
+}
+
+.feedback-message--visible {
+  opacity: 1;
+}
