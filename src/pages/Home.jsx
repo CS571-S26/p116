@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Badge, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { motion, useReducedMotion } from 'framer-motion'
 import { events } from '../data/events'
 import AnimatedPage from '../components/AnimatedPage'
@@ -48,9 +48,13 @@ export default function Home() {
           animate="visible"
         >
           <motion.div variants={prefersReduced ? {} : heroChild}>
-            <Badge bg="danger" className="red-tag">Music Industry for Madison Students</Badge>
+            <span className="mims-tag">Music Industry for Madison Students</span>
           </motion.div>
-          <motion.h1 variants={prefersReduced ? {} : heroChild}>Connect. Learn. Grow.</motion.h1>
+          <motion.h1 variants={prefersReduced ? {} : heroChild} className="home__hero-h1">
+            <span className="home__hero-h1--w1">Connect.</span>
+            <span className="home__hero-h1--w2">Learn.</span>
+            <span className="home__hero-h1--w3">Grow.</span>
+          </motion.h1>
           <motion.p variants={prefersReduced ? {} : heroChild}>
             The home for music industry students at UW–Madison. Network with professionals, attend exclusive events, and launch your career.
           </motion.p>
@@ -63,7 +67,7 @@ export default function Home() {
 
       {/* Community */}
       <section className="home__community">
-        <Badge bg="danger" className="red-tag" style={{ marginBottom: '12px' }}>Join the Community</Badge>
+        <span className="mims-tag" style={{ marginBottom: '12px' }}>Join the Community</span>
         <div className="home__social-buttons">
           <a href="https://discord.gg/MWrqSXGcp5" target="_blank" rel="noopener noreferrer" className="social-btn social-btn--discord">
             <DiscordIcon /> Join Discord
