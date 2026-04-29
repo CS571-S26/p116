@@ -112,7 +112,7 @@ Phase 3 is a design overhaul targeting final-submission quality. All existing fu
 ### Events (`pages/Events.jsx` + `Events.css`)
 - Use `<PageHeader tag="What's Happening" title="Upcoming Events" subtitle="RSVP to save events to your personal list." />`
 - `EventCard` gets: `border-left: 3px solid var(--red)`, `background: var(--surface-raised)`, `box-shadow: 0 4px 20px rgba(0,0,0,0.35)`
-- **Fix heading skip:** `Card.Title` currently renders as `<h5>` by default in React Bootstrap, creating an h1 → h5 skip on the Events page. Event titles are list items, not document sections — change to `<Card.Title as="div">`. The visible text remains accessible to screen readers; no `role` or `aria-label` additions are needed since the content is still in the DOM.
+- **Fix heading skip:** `Card.Title` currently renders as `<h5>` by default in React Bootstrap, creating an h1 → h5 skip on the Events page. Event titles are list items, not document sections — change to `<Card.Title as="div">`. The visible text remains accessible to screen readers; no `role` or `aria-label` additions are needed since the content is still in the DOM. (Optional: if heading-based navigation of the events list is desirable, add a visually-hidden h2 before the list with text like "Event Listings" — this is a nice-to-have, not required for the rubric.)
 - Stagger EventCard entrance (see Section 5)
 
 ### MyEvents (`pages/MyEvents.jsx` + `MyEvents.css`)
