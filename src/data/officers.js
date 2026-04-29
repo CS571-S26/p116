@@ -1,8 +1,9 @@
 export const officers = [
-  { id: 1, name: 'Alex Rivera',  role: 'President',        initials: 'AR' },
-  { id: 2, name: 'Jordan Kim',   role: 'Vice President',   initials: 'JK' },
-  { id: 3, name: 'Maya Patel',   role: 'Treasurer',        initials: 'MP' },
-  { id: 4, name: 'Sam Torres',   role: 'Secretary',        initials: 'ST' },
-  { id: 5, name: 'Lily Chen',    role: 'Events Director',  initials: 'LC' },
-  { id: 6, name: 'Dev Nguyen',   role: 'Marketing Lead',   initials: 'DN' },
+  { id: 1, name: 'Aryan Pandya',   role: 'President',              initials: 'AP' },
+  { id: 2, name: 'Hunter Davies',  role: 'Vice President',         initials: 'HD' },
+  { id: 3, name: 'Oliver Kohn',    role: 'Vice President',         initials: 'OK' },
+  { id: 4, name: 'Kanuj Verma',    role: 'Treasurer',              initials: 'KV' },
+  { id: 5, name: 'Joshua Lopez',   role: 'Events Director',        initials: 'JL' },
+  { id: 6, name: 'Alex Bradley',   role: 'Media & Marketing',      initials: 'AB' },
+  { id: 7, name: 'Sawyer Roth',    role: 'Communications',         initials: 'SR' },
 ]

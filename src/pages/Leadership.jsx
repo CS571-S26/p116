@@ -20,7 +20,7 @@ export default function Leadership() {
   return (
     <AnimatedPage>
     <div className="page">
-      <PageHeader tag="The Team" title="Leadership" subtitle="Meet the officers running MIMS for 2024–25." />
+      <PageHeader tag="The Team" title="Leadership" subtitle="Meet the officers running MIMS for 2025–26." />
       <div className="section-heading">Executive Board</div>
       <motion.div
         className="leadership__grid"
