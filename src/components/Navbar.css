@@ -26,16 +26,38 @@
   letter-spacing: 0.3px;
   padding: 8px 12px !important;
   transition: color 0.15s ease;
+  position: relative;
 }
 
 .mims-navbar .nav-link:hover {
   color: var(--text-secondary) !important;
 }
 
+.mims-navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: var(--red-text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+.mims-navbar .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.mims-navbar .nav-link.active::after {
+  transform: scaleX(1);
+  opacity: 0.7;
+}
+
 /* Active route — uses --red-text for WCAG AA contrast (#ff3333 on #0d0d0d = 4.88:1) */
 .mims-navbar .nav-link.active {
   color: var(--red-text) !important;
-  border-bottom: 1px solid var(--red-text);
 }
 
 /* Keyboard focus rings — all interactive nav elements */
