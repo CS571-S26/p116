@@ -1,7 +1,9 @@
-.about__mission p {
+.about__mission p,
+.about__membership p {
   color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.7;
+  max-width: 680px;
 }
 
 .about__what-grid {
@@ -33,8 +35,6 @@
   line-height: 1.6;
 }
 
-.about__membership p {
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.7;
+.about__membership {
+  padding-bottom: 40px;
 }

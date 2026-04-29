@@ -8,9 +8,10 @@
 }
 
 .my-events__empty-icon {
-  font-size: 36px;
+  color: var(--text-muted);
   margin-bottom: 16px;
-  opacity: 0.6;
+  display: flex;
+  justify-content: center;
 }
 
 .my-events__empty h2 {

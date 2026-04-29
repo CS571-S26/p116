@@ -40,7 +40,11 @@ export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
         </>
       ) : (
         <div className="my-events__empty">
-          <div className="my-events__empty-icon">🎵</div>
+          <div className="my-events__empty-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path d="M28 8v16.5a5 5 0 1 1-2-4V12l-12 3v13.5a5 5 0 1 1-2-4V10.5L28 8z" fill="currentColor" opacity="0.45"/>
+            </svg>
+          </div>
           <h2>No events yet</h2>
           <p>Head to the Events page and RSVP to something!</p>
           <Button as={Link} to="/events" variant="outline-danger" size="sm">Browse Events →</Button>

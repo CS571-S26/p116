@@ -15,7 +15,7 @@ export default function About() {
     <div className="page">
       <PageHeader tag="Who We Are" title="About MIMS" />
 
-      <section className="about__mission">
+      <section className="about__mission" style={{ paddingBottom: '8px' }}>
         <h2 className="section-heading">Our Mission</h2>
         <p>
           MIMS — Music Industry for Madison Students — bridges the gap between UW–Madison academics
@@ -24,9 +24,9 @@ export default function About() {
         </p>
       </section>
 
-      <hr className="divider" />
+      <hr className="divider" style={{ margin: '28px 0' }} />
 
-      <section>
+      <section style={{ paddingBottom: '8px' }}>
         <h2 className="section-heading">What We Do</h2>
         <div className="about__what-grid">
           {whatWeDo.map(item => (
@@ -38,7 +38,7 @@ export default function About() {
         </div>
       </section>
 
-      <hr className="divider" />
+      <hr className="divider" style={{ margin: '28px 0' }} />
 
       <section className="about__membership">
         <h2 className="section-heading">Membership</h2>
