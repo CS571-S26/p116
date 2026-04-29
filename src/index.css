@@ -71,8 +71,8 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 48px;
-  position: relative;
-  overflow: hidden;
+  position: relative;   /* anchor for ::before atmospheric glow pseudo-elements */
+  overflow: hidden;     /* clips glow bleed — avoid nesting dropdowns/tooltips inside .page */
 }
 
 .red-tag {
