@@ -1,5 +1,5 @@
 .officer-card {
-  background: var(--surface-raised);
+  background: linear-gradient(160deg, #191919 0%, #141414 100%);
   border: 1px solid var(--border);
   padding: 24px 16px;
   text-align: center;
@@ -12,12 +12,17 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
+.officer-card:hover .officer-card__avatar {
+  box-shadow: 0 0 0 1px rgba(204, 0, 0, 0.3), 0 0 18px rgba(204, 0, 0, 0.35);
+}
+
 .officer-card__avatar {
   width: 52px;
   height: 52px;
   border-radius: 50%;
   background: #1a0000;
   border: 2px solid var(--red);
+  box-shadow: 0 0 0 1px rgba(204, 0, 0, 0.2), 0 0 12px rgba(204, 0, 0, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
