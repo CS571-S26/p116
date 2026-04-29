@@ -4,9 +4,11 @@ import { events } from '../data/events'
 import PageHeader from '../components/PageHeader'
 import MyEventRow from '../components/MyEventRow'
 import AnimatedPage from '../components/AnimatedPage'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import './MyEvents.css'
 
 export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
+  const prefersReduced = useReducedMotion()
   const rsvpdEvents = events.filter(e => rsvpIds.includes(e.id))
 
   return (
@@ -20,13 +22,20 @@ export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
             RSVP'd Events ({rsvpdEvents.length})
           </div>
           <div className="my-events__list">
-            {rsvpdEvents.map(event => (
-              <MyEventRow
-                key={event.id}
-                event={event}
-                onUnRSVP={onUnRSVP}
-              />
-            ))}
+            <AnimatePresence initial={false}>
+              {rsvpdEvents.map(event => (
+                <motion.div
+                  key={event.id}
+                  exit={prefersReduced ? { opacity: 0 } : { opacity: 0, x: -16 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <MyEventRow
+                    event={event}
+                    onUnRSVP={onUnRSVP}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
         </>
       ) : (
