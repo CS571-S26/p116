@@ -1,0 +1,15 @@
+.waveform-divider {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 16px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.waveform-divider__bar {
+  width: 2px;
+  border-radius: 1px;
+  background: var(--red);
+  flex-shrink: 0;
+}
