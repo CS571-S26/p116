@@ -7,6 +7,8 @@
 
 ---
 
+> **Status: Pre-implementation spec.** The code described in this document does not yet exist. `framer-motion` is not yet in `package.json`. `AnimatedPage`, `OfficerCard`, and `PageHeader` are not yet created. `App.jsx`, `About.jsx`, `MyEvents.jsx` are not yet updated. Implementation Sequence (Section 7) is the authoritative order of work.
+
 ## Overview
 
 Phase 3 is a design overhaul targeting final-submission quality. All existing functionality is preserved. The pass covers: component extraction to hit the 12-component rubric requirement, color/typography polish, cinematic depth visual direction, Framer Motion animations (tasteful, "somewhere in between"), and accessibility fixes. No new features or pages are added.
@@ -40,6 +42,8 @@ Phase 3 is a design overhaul targeting final-submission quality. All existing fu
 | `--border` | `#1f1f1f` | `#252525` | Slightly more visible — was nearly invisible on dark surface |
 
 **Bootstrap override additions:** `--bs-danger` is kept at `#cc0000` for filled button backgrounds. Outline button text color is overridden via `.btn-outline-danger` CSS rule to use `var(--red-text)`.
+
+**Contrast verification note:** The navbar background is `var(--bg)` = `#0d0d0d` (confirmed in `Navbar.css`). `#ff3333` on `#0d0d0d` = 4.88:1 ✅. Card backgrounds are `var(--surface-raised)` = `#161616` — `#ff3333` on `#161616` ≈ 4.6:1 ✅. Both surfaces pass WCAG AA for normal text.
 
 ---
 
@@ -75,6 +79,8 @@ Phase 3 is a design overhaul targeting final-submission quality. All existing fu
 
 **Verification requirement:** After implementation, count the components actually imported and rendered in the app. The target is 12 meaningfully-used components, not just 12 files.
 
+**Rubric note on page components:** The assignment brief explicitly states "The page component counts towards the overall number of components." This confirms the count of 5 pages + 7 shared components = 12 is valid under the rubric. The 7 shared components (Navbar, EventCard, FeedbackMessage, MyEventRow, OfficerCard, PageHeader, AnimatedPage) also stand on their own as meaningful components.
+
 ---
 
 ## 4. Per-Page Layout Changes
@@ -93,8 +99,10 @@ Phase 3 is a design overhaul targeting final-submission quality. All existing fu
 
 ### About (`pages/About.jsx` + `About.css`)
 - Use `<PageHeader tag="Who We Are" title="About MIMS" />`
-- **Fix heading skip:** The "What We Do" grid currently uses `<h3>` card titles with no `<h2>` between the page `<h1>` and them. Change card titles to `<h2>` (or use a div if a heading at that level feels wrong — but a heading is semantically appropriate here since each "What We Do" item is a distinct subsection).
-- The section-heading divs ("Our Mission", "What We Do", "Membership") are styled divs, not headings — this is fine as long as the real heading hierarchy is clean.
+- **Fix heading skip (complete):** The current structure is h1 → h3 (skip). Fix the full heading hierarchy:
+  - Convert the three `.section-heading` divs ("Our Mission", "What We Do", "Membership") to `<h2>` elements with the same styling. These are genuine section headings for the page.
+  - Keep "What We Do" item titles (`Industry Panels`, etc.) as `<h3>` — they are subsections under the "What We Do" `<h2>`, making the final structure h1 → h2 → h3, no skips.
+- After fix, About heading structure: `h1 (About MIMS)` → `h2 (Our Mission)` → `h2 (What We Do)` → `h3 (Industry Panels, ...)` → `h2 (Membership)`
 
 ### Leadership (`pages/Leadership.jsx` + `Leadership.css`)
 - Use `<PageHeader tag="The Team" title="Leadership" subtitle="Meet the officers running MIMS for 2024–25." />`
@@ -104,7 +112,7 @@ Phase 3 is a design overhaul targeting final-submission quality. All existing fu
 ### Events (`pages/Events.jsx` + `Events.css`)
 - Use `<PageHeader tag="What's Happening" title="Upcoming Events" subtitle="RSVP to save events to your personal list." />`
 - `EventCard` gets: `border-left: 3px solid var(--red)`, `background: var(--surface-raised)`, `box-shadow: 0 4px 20px rgba(0,0,0,0.35)`
-- **Fix heading skip:** `Card.Title` currently renders as `<h5>` by default in React Bootstrap. Event titles are list items, not document sections — change to `<Card.Title as="div">`.
+- **Fix heading skip:** `Card.Title` currently renders as `<h5>` by default in React Bootstrap, creating an h1 → h5 skip on the Events page. Event titles are list items, not document sections — change to `<Card.Title as="div">`. The visible text remains accessible to screen readers; no `role` or `aria-label` additions are needed since the content is still in the DOM.
 - Stagger EventCard entrance (see Section 5)
 
 ### MyEvents (`pages/MyEvents.jsx` + `MyEvents.css`)
@@ -157,31 +165,53 @@ export default function AnimatedPage({ children }) {
 
 ### `App.jsx` — AnimatePresence
 
-Wrap `<Routes>` in `<AnimatePresence mode="wait">`. Pass `location` key for route-aware transitions:
+`BrowserRouter` lives in `main.jsx` wrapping `<App>`, so `useLocation()` is safe to call inside `App`.
+
+Full wiring — `<Routes>` gets a `key` and `location` prop so `AnimatePresence` can detect route changes and fire exit animations:
 
 ```jsx
 import { AnimatePresence } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 
-// inside App:
-const location = useLocation()
-return (
-  <>
-    <Navbar rsvpCount={rsvpIds.length} />
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        ...
-      </Routes>
-    </AnimatePresence>
-  </>
-)
+export default function App() {
+  const location = useLocation()
+  // ... rsvp state ...
+  return (
+    <>
+      <Navbar rsvpCount={rsvpIds.length} />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/"           element={<Home />} />
+          <Route path="/about"      element={<About />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/events"     element={<Events rsvpIds={rsvpIds} onRSVP={addRSVP} onUnRSVP={removeRSVP} />} />
+          <Route path="/my-events"  element={<MyEvents rsvpIds={rsvpIds} onUnRSVP={removeRSVP} />} />
+        </Routes>
+      </AnimatePresence>
+    </>
+  )
+}
 ```
 
-Each page component wraps its content in `<AnimatedPage>`.
+Each page component wraps its entire return value in `<AnimatedPage>`. Example:
+```jsx
+// Home.jsx
+export default function Home() {
+  return (
+    <AnimatedPage>
+      <div className="page">
+        {/* ... */}
+      </div>
+    </AnimatedPage>
+  )
+}
+```
+
+This applies to all 5 pages: Home, About, Leadership, Events, MyEvents.
 
 ### Hero stagger (Home)
 
-Wrap the hero `<section>` children in a `motion.div` with `staggerChildren: 0.08`. Each child (tag, h1, p, buttons) gets `variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}`.
+Wrap the hero `<section>` children in a `motion.div` with `initial="hidden" animate="visible"` and `variants={{ visible: { transition: { staggerChildren: 0.08 } } }}`. Each direct child (tag, h1, p, button group) gets `variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}` and `transition={{ duration: 0.4, ease: 'easeOut' }}`. The parent's `initial`/`animate` propagate to children via the variants system.
 
 ### EventCard list entrance
 
@@ -195,16 +225,23 @@ In `EventCard`:
 
 ### MyEventRow exit animation
 
-In `MyEvents.jsx`, wrap the list in `<AnimatePresence>`. Each `MyEventRow` gets:
+In `MyEvents.jsx`, wrap the `rsvpdEvents.map(...)` call in `<AnimatePresence>`. Each `MyEventRow` is wrapped in a keyed `motion.div` that defines the exit animation:
+
 ```jsx
-<motion.div
-  key={event.id}
-  exit={{ opacity: 0, x: -16 }}
-  transition={{ duration: 0.18 }}
->
-  <MyEventRow ... />
-</motion.div>
+<AnimatePresence initial={false}>
+  {rsvpdEvents.map(event => (
+    <motion.div
+      key={event.id}
+      exit={{ opacity: 0, x: -16 }}
+      transition={{ duration: 0.18 }}
+    >
+      <MyEventRow event={event} onUnRSVP={onUnRSVP} />
+    </motion.div>
+  ))}
+</AnimatePresence>
 ```
+
+`initial={false}` is required — without it, all items animate in on page load (first render), which is unintended. This flag disables entry animations for items already in the list on mount, keeping only exit animations active for removed items. The `<AnimatePresence>` wrapper is what makes the `exit` prop fire when items are removed.
 
 ### OfficerCard stagger
 
