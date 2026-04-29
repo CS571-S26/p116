@@ -1,5 +1,5 @@
 .my-event-row {
-  background: var(--surface-raised);
+  background: linear-gradient(170deg, #191919 0%, #141414 100%);
   border-left: 3px solid var(--red);
   padding: 12px 16px;
   display: flex;
