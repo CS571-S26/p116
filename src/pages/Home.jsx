@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom'
 import { Badge, Button } from 'react-bootstrap'
+import { motion, useReducedMotion } from 'framer-motion'
 import { events } from '../data/events'
 import AnimatedPage from '../components/AnimatedPage'
 import './Home.css'
+
+const heroParent = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+}
+
+const heroChild = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+}
 
 const DiscordIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -23,6 +34,7 @@ const InstagramIcon = () => (
 )
 
 export default function Home() {
+  const prefersReduced = useReducedMotion()
   const previewEvents = events.slice(0, 2)
 
   return (
@@ -30,13 +42,23 @@ export default function Home() {
     <div className="page">
       {/* Hero */}
       <section className="home__hero">
-        <Badge bg="danger" className="red-tag">Music Industry for Madison Students</Badge>
-        <h1>Connect. Learn. Grow.</h1>
-        <p>The home for music industry students at UW–Madison. Network with professionals, attend exclusive events, and launch your career.</p>
-        <div className="home__hero-buttons">
-          <Button as={Link} to="/events" variant="outline-danger" className="btn-mims btn-mims--primary">Explore Events →</Button>
-          <Button as={Link} to="/about" variant="outline-secondary" className="btn-mims btn-mims--ghost">About MIMS</Button>
-        </div>
+        <motion.div
+          variants={prefersReduced ? {} : heroParent}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={prefersReduced ? {} : heroChild}>
+            <Badge bg="danger" className="red-tag">Music Industry for Madison Students</Badge>
+          </motion.div>
+          <motion.h1 variants={prefersReduced ? {} : heroChild}>Connect. Learn. Grow.</motion.h1>
+          <motion.p variants={prefersReduced ? {} : heroChild}>
+            The home for music industry students at UW–Madison. Network with professionals, attend exclusive events, and launch your career.
+          </motion.p>
+          <motion.div className="home__hero-buttons" variants={prefersReduced ? {} : heroChild}>
+            <Button as={Link} to="/events" variant="outline-danger" className="btn-mims btn-mims--primary">Explore Events →</Button>
+            <Button as={Link} to="/about" variant="outline-secondary" className="btn-mims btn-mims--ghost">About MIMS</Button>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Community */}
