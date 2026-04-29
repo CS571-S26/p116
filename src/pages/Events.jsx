@@ -20,7 +20,7 @@ export default function Events({ rsvpIds = [], onRSVP, onUnRSVP }) {
 
   return (
     <AnimatedPage>
-      <div className="page">
+      <div className="page events-page">
         <PageHeader tag="What's Happening" title="Upcoming Events" subtitle="RSVP to save events to your personal list." />
         <motion.div
           className="events__list"

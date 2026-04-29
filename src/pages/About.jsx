@@ -12,7 +12,7 @@ const whatWeDo = [
 export default function About() {
   return (
     <AnimatedPage>
-    <div className="page">
+    <div className="page about-page">
       <PageHeader tag="Who We Are" title="About MIMS" />
 
       <section className="about__mission" style={{ paddingBottom: '8px' }}>

@@ -19,7 +19,7 @@ export default function Leadership() {
   const prefersReduced = useReducedMotion()
   return (
     <AnimatedPage>
-    <div className="page">
+    <div className="page leadership-page">
       <PageHeader tag="The Team" title="Leadership" subtitle="Meet the officers running MIMS for 2025–26." />
       <div className="section-heading">Executive Board</div>
       <motion.div
