@@ -45,9 +45,9 @@ export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
               <path d="M28 8v16.5a5 5 0 1 1-2-4V12l-12 3v13.5a5 5 0 1 1-2-4V10.5L28 8z" fill="currentColor" opacity="0.45"/>
             </svg>
           </div>
-          <h2>No events yet</h2>
-          <p>Head to the Events page and RSVP to something!</p>
-          <Button as={Link} to="/events" variant="outline-danger" size="sm">Browse Events →</Button>
+          <h2>No events saved yet.</h2>
+          <p>Browse the lineup and RSVP to your first.</p>
+          <Button as={Link} to="/events" variant="outline-danger" size="sm">Browse the Lineup →</Button>
         </div>
       )}
     </div>

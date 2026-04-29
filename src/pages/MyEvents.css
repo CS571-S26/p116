@@ -1,17 +1,32 @@
 .my-events__empty {
   text-align: center;
   padding: 60px 24px;
-  background: var(--surface-raised);
-  border: 1px dashed var(--border);
+  background: var(--bg);
+  border: 1px dashed rgba(204, 0, 0, 0.15);
   border-radius: 6px;
   margin-top: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
 .my-events__empty-icon {
-  color: var(--text-muted);
+  color: rgba(204, 0, 0, 0.35);
   margin-bottom: 16px;
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+.my-events__empty-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(204, 0, 0, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .my-events__empty h2 {
