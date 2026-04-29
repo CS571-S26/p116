@@ -75,14 +75,6 @@ button {
   overflow: hidden;     /* clips glow bleed — avoid nesting dropdowns/tooltips inside .page */
 }
 
-.red-tag {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  display: inline-block;
-}
-
 .page-title {
   color: var(--text-primary);
   font-size: 28px;
