@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -18,6 +19,7 @@ function loadRsvpIds() {
 
 export default function App() {
   const [rsvpIds, setRsvpIds] = useState(loadRsvpIds)
+  const location = useLocation()
 
   useEffect(() => {
     localStorage.setItem('mims_rsvps', JSON.stringify(rsvpIds))
@@ -34,13 +36,15 @@ export default function App() {
   return (
     <>
       <Navbar rsvpCount={rsvpIds.length} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/leadership" element={<Leadership />} />
-        <Route path="/events" element={<Events rsvpIds={rsvpIds} onRSVP={addRSVP} onUnRSVP={removeRSVP} />} />
-        <Route path="/my-events" element={<MyEvents rsvpIds={rsvpIds} onUnRSVP={removeRSVP} />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/"           element={<Home />} />
+          <Route path="/about"      element={<About />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/events"     element={<Events rsvpIds={rsvpIds} onRSVP={addRSVP} onUnRSVP={removeRSVP} />} />
+          <Route path="/my-events"  element={<MyEvents rsvpIds={rsvpIds} onUnRSVP={removeRSVP} />} />
+        </Routes>
+      </AnimatePresence>
     </>
   )
 }

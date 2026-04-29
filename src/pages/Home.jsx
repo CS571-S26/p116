@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Badge, Button } from 'react-bootstrap'
 import { events } from '../data/events'
+import AnimatedPage from '../components/AnimatedPage'
 import './Home.css'
 
 const DiscordIcon = () => (
@@ -25,6 +26,7 @@ export default function Home() {
   const previewEvents = events.slice(0, 2)
 
   return (
+    <AnimatedPage>
     <div className="page">
       {/* Hero */}
       <section className="home__hero">
@@ -68,5 +70,6 @@ export default function Home() {
         ))}
       </section>
     </div>
+    </AnimatedPage>
   )
 }

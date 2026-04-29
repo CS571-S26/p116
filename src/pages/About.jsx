@@ -1,4 +1,5 @@
 import PageHeader from '../components/PageHeader'
+import AnimatedPage from '../components/AnimatedPage'
 import './About.css'
 
 const whatWeDo = [
@@ -10,6 +11,7 @@ const whatWeDo = [
 
 export default function About() {
   return (
+    <AnimatedPage>
     <div className="page">
       <PageHeader tag="Who We Are" title="About MIMS" />
 
@@ -46,5 +48,6 @@ export default function About() {
         </p>
       </section>
     </div>
+    </AnimatedPage>
   )
 }

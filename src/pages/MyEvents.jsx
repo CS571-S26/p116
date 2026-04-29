@@ -3,12 +3,14 @@ import { Button } from 'react-bootstrap'
 import { events } from '../data/events'
 import PageHeader from '../components/PageHeader'
 import MyEventRow from '../components/MyEventRow'
+import AnimatedPage from '../components/AnimatedPage'
 import './MyEvents.css'
 
 export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
   const rsvpdEvents = events.filter(e => rsvpIds.includes(e.id))
 
   return (
+    <AnimatedPage>
     <div className="page">
       <PageHeader tag="Your Schedule" title="My Events" subtitle="Events you've RSVP'd to. Saved locally in your browser." />
 
@@ -36,5 +38,6 @@ export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
         </div>
       )}
     </div>
+    </AnimatedPage>
   )
 }
