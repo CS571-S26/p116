@@ -40,7 +40,7 @@ export default function EventCard({ event, isRsvpd, onRSVP = () => {}, onUnRSVP 
           <div className="event-card__content">
             <Card.Title as="div" className="event-card__title">{event.title}</Card.Title>
             <Card.Subtitle className="event-card__meta">
-              📍 {event.location} · {event.time}
+              {event.location} <span className="event-card__meta-sep">·</span> {event.time}
             </Card.Subtitle>
             <Card.Text className="event-card__desc">{event.description}</Card.Text>
             <FeedbackMessage visible={showFeedback} />
