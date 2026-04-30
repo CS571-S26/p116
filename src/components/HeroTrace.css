@@ -28,6 +28,7 @@
 
 .hero-trace__base {
   animation: hero-trace-pulse 10s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px rgba(204, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(204, 0, 0, 0.18));
 }
 
 .hero-trace__sweep {
