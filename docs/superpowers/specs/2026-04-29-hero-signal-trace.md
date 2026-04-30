@@ -101,6 +101,30 @@ The base trace stays visible statically. The sweep node is hidden entirely (opac
 
 ---
 
+## Responsive Behaviour
+
+The trace is an SVG with `preserveAspectRatio="none"` — it scales to fill the hero at any width. But at narrower widths the arcs compress horizontally, making them feel tighter and more obvious. The gradient mask (which fades the left 40% out) also starts consuming a larger proportion of the visible area on mobile, so fewer arcs remain visible at all.
+
+### Breakpoint rules (in HeroTrace.css)
+
+| Breakpoint | Behaviour |
+|---|---|
+| `> 768px` (desktop) | Full design as specified: base trace at 0.10–0.18 opacity, sweep node active |
+| `≤ 768px` (tablet) | Reduce base trace opacity range to 0.07–0.12. Reduce sweep node stroke opacity by 30% (via CSS variable or class override). Keep animation running. |
+| `≤ 480px` (mobile) | Reduce base trace to flat 0.06 (no pulse animation). Hide sweep node entirely (`opacity: 0`). The trace reads as a very faint structural line — present but non-distracting. |
+
+### Implementation verification required
+
+The implementer **must** check the trace at three widths in the browser before considering the task done:
+
+1. Desktop (≥ 900px) — arcs feel broad and intentional, sweep node clearly visible
+2. Tablet (~600px) — trace still reads as atmospheric, sweep visible but quieter
+3. Mobile (~375px) — trace is barely perceptible, does not compete with the h1 or CTA
+
+If the trace looks bunched, too dense, or too prominent at any breakpoint, reduce opacity further or hide the sweep node at that width. The typography always takes priority.
+
+---
+
 ## Integration with Existing Hero
 
 - The `<HeroTrace />` element is `position: absolute; inset: 0; z-index: 0`
