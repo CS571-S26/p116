@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { motion, useReducedMotion } from 'framer-motion'
 import { events } from '../data/events'
 import AnimatedPage from '../components/AnimatedPage'
-import WaveformDivider from '../components/WaveformDivider'
+import HeroTrace from '../components/HeroTrace'
 import './Home.css'
 
 const heroParent = {
@@ -43,7 +43,9 @@ export default function Home() {
     <div className="page">
       {/* Hero */}
       <section className="home__hero">
+        <HeroTrace />
         <motion.div
+          className="home__hero-content"
           variants={prefersReduced ? {} : heroParent}
           initial="hidden"
           animate="visible"
@@ -64,7 +66,6 @@ export default function Home() {
             <Button as={Link} to="/about" variant="outline-secondary" className="btn-mims btn-mims--ghost">About MIMS</Button>
           </motion.div>
         </motion.div>
-        <WaveformDivider />
       </section>
 
       {/* Community */}

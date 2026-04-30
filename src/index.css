@@ -118,6 +118,8 @@ button {
   padding: 3px 9px;
   border-radius: 2px;
   margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .btn-red {
