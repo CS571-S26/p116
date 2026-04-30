@@ -46,7 +46,7 @@ Each page gets distinct atmospheric glow placement. Home's glow attaches to `.ho
 | Home | `.home__hero::before` (+ new `::after` for warm glow) | Dual: red 15% top-right + warm (#b42800) 6% bottom-left | Richest — this is the hero |
 | Events | `.page::before` in `Events.css` | Single: red 12% top-left | Directional, off-center |
 | Leadership | `.page::before` in `Leadership.css` | Single: red 10% center-right | Quieter — grid provides structure |
-| About | `.page::before` in `About.css` | Single: red 12% right | Consistent with events, different axis |
+| About | `.page::before` in `About.css` | Single: red 9% right | Intentionally calmer — informational page, not atmospheric |
 | MyEvents | No page glow (empty state has own atmospheric treatment) | — | — |
 
 All `::before` glows use `position: absolute`, `pointer-events: none`, `z-index: 0`. The `.page` class in `index.css` does not currently have `position` or `overflow` set — **add both** to `.page`:

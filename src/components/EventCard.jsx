@@ -8,6 +8,7 @@ export default function EventCard({ event, isRsvpd, onRSVP = () => {}, onUnRSVP 
   const [showFeedback, setShowFeedback] = useState(false)
   const [hovered, setHovered] = useState(false)
   const [rsvpAnimKey, setRsvpAnimKey] = useState(0)
+  const [flushing, setFlushing] = useState(false)
   const prefersReduced = useReducedMotion()
 
   useEffect(() => {
@@ -20,6 +21,10 @@ export default function EventCard({ event, isRsvpd, onRSVP = () => {}, onUnRSVP 
     onRSVP(event.id)
     setShowFeedback(true)
     setRsvpAnimKey(k => k + 1)
+    if (!prefersReduced) {
+      setFlushing(true)
+      setTimeout(() => setFlushing(false), 400)
+    }
   }
 
   function handleUnRSVP() {
@@ -32,7 +37,7 @@ export default function EventCard({ event, isRsvpd, onRSVP = () => {}, onUnRSVP 
 
   return (
     <motion.div
-      whileHover={prefersReduced ? {} : { y: -2, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
+      whileHover={prefersReduced ? {} : { y: -5, transition: { type: 'spring', stiffness: 260, damping: 22 } }}
     >
       <Card className="event-card">
         <Card.Body>
@@ -55,7 +60,7 @@ export default function EventCard({ event, isRsvpd, onRSVP = () => {}, onUnRSVP 
             <Button
               variant={isRsvpd ? 'danger' : 'outline-danger'}
               size="sm"
-              className="event-card__rsvp"
+              className={`event-card__rsvp${flushing ? ' event-card__rsvp--flushing' : ''}`}
               onClick={isRsvpd ? handleUnRSVP : handleRSVP}
               onMouseEnter={() => setHovered(true)}
               onMouseLeave={() => setHovered(false)}

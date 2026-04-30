@@ -11,17 +11,32 @@
   z-index: 0;
 }
 
+.my-events__status {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.my-events__status-count {
+  color: var(--red-text);
+}
+
 .my-events__empty {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 54vh;
+  min-height: 42vh;
   text-align: center;
-  padding: 60px 24px;
+  padding: 48px 24px;
   position: relative;
   z-index: 1;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .my-events__empty-icon {

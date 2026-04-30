@@ -6,7 +6,7 @@
 
 **Architecture:** All changes are CSS and JSX edits to existing files plus one new component (`WaveformDivider`). No new libraries. No new routes. No data changes. The work is decomposed by visual system (backgrounds → cards → typography → micro-details → hover states → empty state) so each task is independently verifiable in the browser.
 
-**Tech Stack:** React 18, Bootstrap 5, Framer Motion, plain CSS (no CSS modules, no Tailwind), Vite dev server
+**Tech Stack:** React 18, Bootstrap 5, Framer Motion (already installed — not a new dependency), plain CSS (no CSS modules, no Tailwind), Vite dev server. No new packages are added by this plan.
 
 ---
 
@@ -258,13 +258,15 @@ Add to `src/pages/About.css`:
   position: absolute;
   top: -20px;
   right: -20px;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(204, 0, 0, 0.12) 0%, transparent 70%);
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(204, 0, 0, 0.09) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 ```
+
+Note: About is intentionally calmer than Events (9% vs 12%) — it's informational, not atmospheric. Keep this lower than the Events and Leadership values.
 
 - [ ] **Step 4: Verify all three pages in browser**
 

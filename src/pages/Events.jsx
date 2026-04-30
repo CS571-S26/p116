@@ -3,7 +3,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import PageHeader from '../components/PageHeader'
 import EventCard from '../components/EventCard'
 import AnimatedPage from '../components/AnimatedPage'
-import WaveformDivider from '../components/WaveformDivider'
 import './Events.css'
 
 const listVariants = {
@@ -23,7 +22,6 @@ export default function Events({ rsvpIds = [], onRSVP, onUnRSVP }) {
     <AnimatedPage>
       <div className="page events-page">
         <PageHeader tag="What's Happening" title="Upcoming Events" subtitle="RSVP to save events to your personal list." />
-        <WaveformDivider />
         <motion.div
           className="events__list"
           variants={prefersReduced ? {} : listVariants}

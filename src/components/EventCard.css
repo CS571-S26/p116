@@ -1,21 +1,22 @@
 .event-card {
   background: linear-gradient(170deg, #191919 0%, #131313 100%) !important;
   border: 1px solid var(--border) !important;
-  border-left: 1px solid rgba(204, 0, 0, 0.65) !important;
+  border-left: 2px solid rgba(204, 0, 0, 0.65) !important;
   border-radius: 4px !important;
   margin-bottom: 10px;
   box-shadow:
     -3px 0 8px rgba(204, 0, 0, 0.10),
     0 4px 24px rgba(0, 0, 0, 0.50),
     inset 0 1px 0 rgba(255, 255, 255, 0.025);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 .event-card:hover {
+  border-left-color: rgba(204, 0, 0, 0.95) !important;
   box-shadow:
-    -4px 0 14px rgba(204, 0, 0, 0.17),
-    0 8px 32px rgba(0, 0, 0, 0.60),
-    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    -6px 0 20px rgba(204, 0, 0, 0.28),
+    0 12px 40px rgba(0, 0, 0, 0.70),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .event-card .card-body {
@@ -75,4 +76,15 @@
   font-weight: 700 !important;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
+}
+
+@keyframes rsvp-flush {
+  0%   { background: var(--red) !important; color: #fff !important; border-color: var(--red) !important; }
+  60%  { background: var(--red) !important; color: #fff !important; border-color: var(--red) !important; }
+  100% { background: transparent; }
+}
+
+.event-card__rsvp--flushing {
+  animation: rsvp-flush 0.38s ease-out forwards;
 }

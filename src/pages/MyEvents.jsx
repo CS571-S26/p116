@@ -13,8 +13,15 @@ export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
 
   return (
     <AnimatedPage>
-    <div className="page">
+    <div className="page my-events-page">
       <PageHeader tag="Your Schedule" title="My Events" subtitle="Events you've RSVP'd to. Saved locally in your browser." />
+
+      <hr className="divider" />
+      <div className="my-events__status">
+        {rsvpdEvents.length > 0
+          ? <><span className="my-events__status-count">{rsvpdEvents.length}</span> event{rsvpdEvents.length !== 1 ? 's' : ''} on your schedule</>
+          : 'Nothing saved yet'}
+      </div>
 
       {rsvpdEvents.length > 0 ? (
         <>
@@ -41,7 +48,7 @@ export default function MyEvents({ rsvpIds = [], onUnRSVP }) {
       ) : (
         <div className="my-events__empty">
           <div className="my-events__empty-icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 40 40" fill="none" aria-hidden="true">
               <path d="M28 8v16.5a5 5 0 1 1-2-4V12l-12 3v13.5a5 5 0 1 1-2-4V10.5L28 8z" fill="currentColor" opacity="0.45"/>
             </svg>
           </div>
